@@ -1,10 +1,9 @@
 
-
 import sqlite3
 
-db_name = 'geometry_database_001.db'
+db_name = 'geometry_database_002.db'
 
-def add_joint_table(conn):
+def add_table(conn):
     sql_joint_statements = [
     """ CREATE TABLE IF NOT EXISTS joints (
             id INTEGER PRIMARY KEY,
@@ -60,7 +59,7 @@ def main():
     try:
         with sqlite3.connect(db_name) as conn:
             # Create the table
-            add_joint_table(conn)
+            add_table(conn)
 
             geometry = [
                 ("robot_high", "OO1", "DF346BE5-4545-5AB0-EDA9-90A0B2BB8B40"),
