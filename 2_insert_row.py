@@ -34,6 +34,7 @@ def add_project(conn, project):
     # get the id of the last inserted row
     return cur.lastrowid
 
+
 def add_task(conn, task):
     # insert table statement
     sql = ''' INSERT INTO tasks (name,priority,status_id,project_id,begin_date,end_date)
@@ -46,6 +47,7 @@ def add_task(conn, task):
     conn.commit()
 
     return cur.lastrowid
+
 
 def main():
     try:
