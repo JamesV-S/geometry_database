@@ -7,7 +7,7 @@ db_name = 'my_database.db'
 # Use an INSERT statement that inserts a row in the table. 
 # then commit() it
 
-# -------------
+# -------------a
 # to [pass arguments] to the insert statement, use [ ? ] as  the placeholder for each
 '''
 INSERT INTO table_name(c1, c2)
