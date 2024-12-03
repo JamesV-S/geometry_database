@@ -10,9 +10,9 @@ db_name = 'my_database.db'
 table = 'tasks'
 update_statement = f'UPDATE {table} SET priority = ?, status_id = ? WHERE id = ?'
 date_update_state = f'UPDATE {table} SET end_date = ?'
+name_update_state = f'UPDATE {table} SET name = ? WHERE id = ?'
 
-
-def update_data_test(conn, sql, arg1, arg2, ID):
+def update_specififc_data(conn, sql, arg1, arg2, ID):
     cursor = conn.cursor()
     try:
         # execute the UPDATE statement with the priority and id.
@@ -43,7 +43,7 @@ def update_data_test(conn, sql, arg1, arg2, ID):
 
 
 # With no ID specified the update is applied to ALL rows
-def update_date(conn, sql, arg1): 
+def update_all_columns_dates(conn, sql, arg1): 
     cursor = conn.cursor()
     try:
         # Execute the UPDATE statement
@@ -60,13 +60,25 @@ def update_date(conn, sql, arg1):
     except sqlite3.Error as e:
         print(f"An error occured in the 'date' UPDATE statement: {e}") 
 
+def update_name(conn, sql, arg1, ID):
+    cursor = conn.cursor()
+    try:
+        # Execute the UPDATE statement
+        cursor.execute(sql, (arg1, ID))
+        conn.commit()
+    except sqlite3.Error as e:
+        print(f"An error occured in the 'name' UPDATE statement: {e}") 
 
 def main():
     try:
         with sqlite3.connect(db_name) as conn:
             # UPDATE one field of one row in the table!
-            update_data_test(conn, update_statement, 58, 52, 2)
-            update_date(conn, date_update_state, '2004-03-10')
+            '''
+            update_specififc_data(conn, update_statement, 58, 52, 2)
+            update_all_columns_dates(conn, date_update_state, '2004-03-10')
+            '''
+            update_name(conn, name_update_state, 'App_analysis_requirements', 1)
+            update_name(conn, name_update_state, 'Top_requirments_confirmation', 2)
     except sqlite3.Error as e:
         print(e)
 
