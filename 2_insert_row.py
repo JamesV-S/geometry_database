@@ -57,7 +57,7 @@ def main():
             project_id = add_project(conn, project)
             print(f"created a project with the id {project_id}")
 
-            # add tasks to the project
+            # add rows info to the tasks!
             tasks = [
                 ('Analyze the requirements of the app', 1, 1, project_id, '2015-01-01', '2015-01-02'),
                 ('Confirm with user about the top requirements', 1, 1, project_id, '2015-01-03', '2015-01-05')
