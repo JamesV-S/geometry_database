@@ -40,6 +40,7 @@ def add_temp_row(conn, sql, arg):
 def del_temp_row(conn, sql, arg):
     cursor = conn.cursor()
     cursor.execute(sql, arg)
+    conn.commit()
 
 def main():
     try:
