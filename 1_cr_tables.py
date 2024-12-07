@@ -1,13 +1,15 @@
 
 import sqlite3
 
-db_name = 'my_database.db'
+db_name = 'my_database_001.db'
 
 # define a list that stores the 'create_table' statements
+name = "NAMES"
+
 sql_cr_table_statements = [
-    """ CREATE TABLE IF NOT EXISTS projects (
+    f""" CREATE TABLE IF NOT EXISTS projects (
             id INTEGER PRIMARY KEY,
-            name text NOT NULL,
+            {name} text NOT NULL,
             begin_date DATE,
             end_date DATE
         );""",
