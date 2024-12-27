@@ -28,7 +28,7 @@ def query_all_rows(conn, arg1, arg2, arg3, table):
         print(e)
 
 
-# binfing variable's to a query w/ `?`
+# infing variable's to a query w/ `?`
 def get_table_by_id(conn, ID, arg1, table):
     cursor = conn.cursor()
     query_param_state = f'SELECT {arg1} FROM {table} WHERE id=?'
@@ -42,9 +42,11 @@ def get_table_by_id(conn, ID, arg1, table):
         print(e)
 
 
-def query_some_rows(conn, arg1, arg2, table, size):
+def query_some_rows(conn, table, size, *args):
     cursor = conn.cursor()
-    query_some_state = f'SELECT {arg1}, {arg2} FROM {table}'
+    collumns = ', '.join(args) if args else '*'
+    # since u usually have: SELECT {arg1}, {arg2} FROM {table}
+    query_some_state = f'SELECT {collumns} FROM {table}'
     try:
         cursor.execute(query_some_state)
         rows = cursor.fetchmany(size)
@@ -61,7 +63,7 @@ def main():
             # QUERY data from the table!
             query_all_rows(conn, 'id', 'name', 'priority', 'tasks')
             get_table_by_id(conn, 1, 'name', 'tasks')
-            query_some_rows(conn, 'name', 'end_date', 'tasks', 3)
+            query_some_rows(conn, 'tasks', 2, 'name', 'priority')
     except sqlite3.Error as e:
         print(e)
 
