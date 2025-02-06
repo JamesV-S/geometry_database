@@ -39,7 +39,8 @@ def update_specififc_data(conn, sql, arg1, arg2, ID):
             print(f"No '{table}' table found with id `{ID}`.")
 
     except sqlite3.Error as e:
-        print(f"An error occured in the UPDATE statement: {e}") 
+        print(f"An error occured in the UPDATE statement: {e}")
+update_specififc_data(conn, update_statement, 58, 52, 2)
 
 
 # With no ID specified the update is applied to ALL rows
